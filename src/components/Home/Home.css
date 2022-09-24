@@ -1,0 +1,51 @@
+.homeContainer{
+    width: 80%;
+    margin: 5% auto;
+}
+.homeWrapper{
+    display: flex;
+}
+.bannerLeft{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.bannerLeft button{
+    width: 200px;
+    height: 52px;
+    font-size: 18px;
+    background-color: orange;
+    color: rgb(19, 9, 43);
+    border: 0px;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+.bannerLeft p{
+    color: orange;
+    margin-bottom: 20px;
+}
+.bannerLeft h1{
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 45px;
+    margin: 5px 0px;
+}
+.bannerLeft h5{
+    font-size: 20px;
+    font-weight:400;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+
+
+.bannerRight{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+.bannerRight img{
+    /* width: 450px; */
+    height: 500px;
+}
