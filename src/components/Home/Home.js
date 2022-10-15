@@ -1,6 +1,7 @@
 import React from 'react';
 import './Home.css';
 import banner from '../../images/banner.jpg'
+import { Button } from 'react-bootstrap';
 
 const Home = () => {
     return (
@@ -9,8 +10,9 @@ const Home = () => {
                 <div className="bannerLeft">
                     <p>Sale up to 70% off</p>
                     <h1>New Collection For Fall</h1>
-                    <h5>Discover all the new arrivals of ready-to-wear collection.</h5>
-                    <button>Shop Now</button>
+                    <h5 className='text-5xl font-bold text-red-500'>Discover all the new arrivals of ready-to-wear collection.</h5>
+                    <Button variant="warning" >Shop Now</Button>
+                    {/* <button>Shop Now</button> */}
                 </div>
                 <div className="bannerRight">
                     <img src={banner} alt="" />

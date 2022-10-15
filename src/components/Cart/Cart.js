@@ -1,14 +1,17 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+import { TrashIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import './Cart.css';
 
 const Cart = ({cart}) => {
+    console.log(cart)
     let totalPrice = 0 ;
     let totalShipping = 0 ;
     let quantity = 0;
     for(const product of cart){
         quantity = quantity + product.quantity;
         totalPrice = totalPrice + product.price * product.quantity ;
-        totalShipping = totalShipping + product.shipping ;
+        totalShipping = totalShipping + product.shipping * product.quantity ;
     }
     const taxTotal = parseFloat((totalPrice * 0.1).toFixed(2)) ;
     const grandTotal = totalPrice + totalShipping + taxTotal;
@@ -20,6 +23,10 @@ const Cart = ({cart}) => {
             <p>Total Shipping : $ {totalShipping}</p>
             <p>Total Tax : $ {taxTotal}</p>
             <h5>Grand Total $ {grandTotal.toFixed(2)}</h5>
+
+            <button className='flex py-2 px-3 bg-orange-800 text-white w-full mb-2 justify-center '>Clear Cart <TrashIcon className='h-5 w-5 ml-4 items-center' /> </button>
+            <Link to="/review" className='flex py-2 px-3 bg-orange-800 text-white w-full mb-2 justify-center font-Poppins '>Review Order <ArrowRightIcon className='h-5 w-5 ml-4 items-center' /> </Link>
+            
         </div>
     );
 }

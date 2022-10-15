@@ -11,36 +11,37 @@ const Shop = () => {
         fetch('products.json')
         .then(res => res.json())
         .then(data => setProducts(data))
-    } , [])
+    } , []) ;
 
     useEffect( () => {
         const storedCart = getStoredCart();
-        const saveCart  = [] ;
-        for (const id in storedCart) {
-            const addedProduct = products.find(product => product.id === id)
-            if(addedProduct){
+        const saveCart = [] ;
+        for(const id in storedCart ){
+           const  addedProduct = products.find(product => product.id === id);
+           if(addedProduct){
                 const quantity = storedCart[id];
                 addedProduct.quantity = quantity;
-                saveCart.push(addedProduct)
-            }            
+                saveCart.push(addedProduct);
+           }
         }
-        setCart(saveCart)
-    } ,[products])
+        setCart(saveCart);
+    }, [products])
+
+
 
     const handleAddToCart = (selectedProduct) => {
-        // const newCart = [...cart, selectedProduct];
-        // setCart(newCart);
         let newCart = [] ;
-        const exists = cart.find(product => product.id === selectedProduct.id)
-        if(!exists){
+
+        const exist = products.find(product => product.id === selectedProduct.id);
+        if(!exist){
             selectedProduct.quantity = 1 ;
             newCart = [...cart, selectedProduct]
-        }
-        else{
+        } else {
             const rest = cart.filter(product => product.id !== selectedProduct.id);
-            exists.quantity = exists.quantity + 1 ;
-            newCart = [...rest, exists]
+            exist.quantity = exist.quantity + 1 ;
+            newCart = [...rest, exist]
         }
+        
         setCart(newCart)
         addToDb(selectedProduct.id)
     }
