@@ -1,4 +1,5 @@
 .product{
+    width: 30%;
     border: 1px solid #ddd;
     padding: 12px;
     border-radius: 5px;
@@ -9,19 +10,23 @@
 .product img{
     width: 100%;
     border-radius: 5px;
+    /* height: 300px; */
 }
 .product h3{
     text-transform: capitalize;
+    font-size: 18px;
     font-weight: 500;
     margin: 8px 0px;
 }
 .product h4{
     text-transform: capitalize;
     font-weight: 600;
+    font-size: 14px;
     margin: 8px 0px;
 }
 .product p{
     font-weight: 400;
+    font-size: 14px;
     margin: 8px 0px;
 }
 .product button{

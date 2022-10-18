@@ -5,3 +5,11 @@
 .cart p{
     margin: 15px 0px;
 }
+.cart button{
+    margin-top: 20px;
+    border-radius: 5px;
+}
+.cart a{
+    text-decoration: none;
+    border-radius: 5px;
+}

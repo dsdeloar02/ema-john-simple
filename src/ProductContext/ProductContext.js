@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { Outlet, useLoaderData } from 'react-router-dom';
-import Footer from '../components/Footer/Footer';
-import Header from '../components/Header/Header';
+import React, { createContext, useEffect, useState } from 'react';
 import { getStoredCart } from '../utilities/fakedb';
 
-const Main = () => {
-    const products = useLoaderData();
+export const quantityContext = createContext();
+
+const ProductContext = ({children}) => {
     const [cart, setCart] = useState([]);
-  
+    const [products, setProducts] = useState([]);
+    useEffect( () => {
+        fetch("products.json")
+        .then(res => res.json())
+        .then(data => setProducts(data))
+    }, []);
+
     useEffect( () => {
         const storedCart = getStoredCart();
         const saveCart = [] ;
@@ -22,13 +26,16 @@ const Main = () => {
         setCart(saveCart);
     }, [products])
 
+
+    const authInfo = {cart}
+
     return (
         <div>
-            <Header cart={cart} ></Header>
-            <Outlet></Outlet>
-            <Footer></Footer>
+            <quantityContext.Provider value={authInfo} >
+                {children}
+            </quantityContext.Provider>
         </div>
     );
 }
 
-export default Main;
+export default ProductContext;

@@ -1,18 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../UserContext/UserContext';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css';
-const Shop = () => {
-    const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
-    useEffect( () =>{
-        fetch('products.json')
-        .then(res => res.json())
-        .then(data => setProducts(data))
-    } , []) ;
 
+const Shop = () => {
+    const products = useLoaderData();
+    const [cart, setCart] = useState([]);
+  
     useEffect( () => {
         const storedCart = getStoredCart();
         const saveCart = [] ;
@@ -21,7 +19,7 @@ const Shop = () => {
            if(addedProduct){
                 const quantity = storedCart[id];
                 addedProduct.quantity = quantity;
-                saveCart.push(addedProduct);
+                saveCart.push(addedProduct);               
            }
         }
         setCart(saveCart);
@@ -30,6 +28,7 @@ const Shop = () => {
 
 
     const handleAddToCart = (selectedProduct) => {
+        console.log(selectedProduct);
         let newCart = [] ;
 
         const exist = products.find(product => product.id === selectedProduct.id);
@@ -40,8 +39,7 @@ const Shop = () => {
             const rest = cart.filter(product => product.id !== selectedProduct.id);
             exist.quantity = exist.quantity + 1 ;
             newCart = [...rest, exist]
-        }
-        
+        }        
         setCart(newCart)
         addToDb(selectedProduct.id)
     }

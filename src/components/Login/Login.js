@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Login.css';
 import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import app from "../../firebase/firebase.init";
 import swal from 'sweetalert';
@@ -49,9 +50,7 @@ const Login = () => {
         console.log("error", error.message);
         if((error.message)){
           setPasswordError('Password is Incorrect');
-        }
-       
-        
+        } 
       });      
   };
 
